@@ -3,15 +3,15 @@ import { Expense } from "../entities/Expense";
 
 const exepenseSchema = new mongoose.Schema({
   user: {
-    type: Array,
-    ref: 'User',
+    name: String,
+    email: String
   },
   name: String,
   description: String,
   price: Number,
   payday: Date,
   dueDate: Date,
-  paymentMethod: [String],
+  paymentMethod: String,
   category: [String],
   observation: String,
   createdAt: {

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { ExpenseMongoose } from '../repositories/ExpenseMongoose';
 import { ExpenseController } from '../controller/ExpenseController';
 import { ExpenseUseCase } from '../useCases/ExpenseUseCase';
+import { upload } from '../db/multer';
 
 class ExpenseRoutes {
   public router: Router;
@@ -17,7 +18,16 @@ class ExpenseRoutes {
   };
 
   initRoutes() {
-    this.router.post('/', this.expenseController.create.bind(this.expenseController));
+    this.router.post(
+      '/',
+      upload.fields([
+        {
+          name: 'invoice',
+          maxCount: 1
+        }
+      ]),
+      this.expenseController.create.bind(this.expenseController)
+    );
   };
 }
 

@@ -15,17 +15,17 @@ class App {
     connect();
   };
 
-  middlewaresInitialize() {
+  private middlewaresInitialize() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   };
 
-  initializeRoutes() {
+  private initializeRoutes() {
     this.app.use('/expenses', this.expenseRoutes.router);
     // this.app.use('/users', this.userRoutes.router);
   };
 
-  interceptionError() {
+  private interceptionError() {
     this.app.use(errorMiddleware);
   };
   
